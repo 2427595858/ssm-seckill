@@ -1,0 +1,30 @@
+/* 使用mysql建立数据库seckill */
+
+/* 创建秒杀商品表seckill */
+create table seckill(
+		seckill_id BIGINT NOT NULL auto_increment, /* 商品库存id */
+		name VARCHAR(100) NOT NULL,									/* 商品名称 */
+		number INT NOT NULL,												/* 库存数量 */
+		start_time TIMESTAMP NOT NULL,							/* 秒杀开始时间 */
+		end_time  TIMESTAMP NOT NULL,							/* 秒杀结束时间 */
+		create_time  TIMESTAMP NOT NULL,							/* 创建时间 */
+		PRIMARY KEY (seckill_id)
+);
+
+/* 插入数据 */
+INSERT into seckill(name,number,start_time,end_time)
+VALUES
+  ('2000元秒杀iphone x',100,'2016-01-01 00:00:00','2016-01-02 00:00:00'),
+  ('500元秒杀ipad',200,'2016-01-01 00:00:00','2016-01-02 00:00:00'),
+  ('6600元秒杀mac book pro',300,'2016-01-01 00:00:00','2016-01-02 00:00:00'),
+  ('7000元秒杀iMac',400,'2016-01-01 00:00:00','2016-01-02 00:00:00');
+
+/* 创建秒杀成功信息表 */
+create table success_killed(
+	seckill_id BIGINT NOT NULL, 						/* 秒杀商品id */
+	user_phone BIGINT NOT NULL, 						/* 用户手机号 */
+	state TINYINT NOT NULL DEFAULT -1,			/* 状态标志：无效（-1），成功（0），已付款（1），已发货（2） */
+	create_time TIMESTAMP NOT NULL, 				/* 创建时间 */
+	PRIMARY KEY(seckill_id,user_phone)  		/* id和手机号作为联合主键 */
+)
+

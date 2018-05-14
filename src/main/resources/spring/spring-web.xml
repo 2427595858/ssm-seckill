@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!-- 配置springMVC -->
+    <!-- 1.开启springMVC注解配置 -->
+    <!-- 使用mvc:annotation-driven可以简化配置：
+            a.相当于自动配置了注解映射器和注解适配器
+            b. 提供一系列功能：数据绑定，数据和日期的format @NumberFormat,@DateTimeFormat
+            c. xml,json的默认读写
+             -->
+    <mvc:annotation-driven/>
+
+    <!-- 2.当我们配置了RESTful方式访问时，静态资源（js，css，img...）也会经过springmvc的Dispatcher进行解析
+         要避免这种情况，就要对静态资源的解析进行配置 -->
+    <!-- 静态资源默认servlet配置（若发现请求时静态资源请求，则交由默认的servlet处理，否则交给springmvc前端控制器处理）
+         a. 加入对静态资源的处理（js，gif，png，css等）
+         b. 允许使用“/”做整体映射
+    -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 3.配置jsp 显示ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置jsp页面的jstl标签，以及前缀和后缀 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 4.扫描web包下相关的bean -->
+    <context:component-scan base-package="org.seckill.web"/>
+
+</beans>
