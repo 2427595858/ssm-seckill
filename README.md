@@ -1,7 +1,8 @@
-## 项目介绍
+## 项目介绍（高并发优化部分代码待补充）
 参照慕课网视频实现的高速秒杀API。
 
 视频地址：
+
 [Java高并发秒杀API之业务分析与DAO层](https://www.imooc.com/learn/587)
 
 [Java高并发秒杀API之Service层](https://www.imooc.com/learn/631)
