@@ -67,22 +67,17 @@ public class SeckillServiceTest {
             // 秒杀未开启
             logger.warn("exposer={}",exposer);
         }
-
     }
 
-//    @Test     // 将两个测试方法结合，不需要这个测试方法
-//    public void executeSeckill() throws Exception{
-//        long id = 1L;
-//        long userPhone = 13623232333L;
-//        String md5 = "225b3fa515b9574b55bb5bb14f1fc0c7";
-//        try{
-//            SeckillExecution seckillExecution = seckillService.executeSeckill(id,userPhone,md5);
-//            System.out.println(seckillExecution);
-//            logger.info("seckillExecution={}",seckillExecution);
-//        } catch (SeckillCloseException e) {
-//            logger.error(e.getMessage());
-//        } catch (RepeatKillException e) {
-//            logger.error(e.getMessage());
-//        }
-//    }
+    @Test
+    public void executeSeckillProcedure() throws Exception{
+        long seckillId=1L;
+        long userPhone = 13989892333L;
+        Exposer exposer = seckillService.exportSeckillUrl(seckillId);
+        if(exposer.isExposed()){
+            String md5 = exposer.getMd5();
+            SeckillExecution execution = seckillService.executeSeckillProcedure(seckillId,userPhone,md5);
+            logger.info(execution.getStateInfo());
+        }
+    }
 }

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 秒杀商品表DAO层编写
@@ -40,6 +41,10 @@ public interface SeckillDao
      */
     public List<Seckill> queryAll(@Param("offset") int offset, @Param("limit") int limit)throws Exception;
 
-
+    /**
+     * 调用存储过程来执行秒杀操作
+     * @param map
+     */
+    public void killByProcedure(Map<String,Object> map);
 
 }
