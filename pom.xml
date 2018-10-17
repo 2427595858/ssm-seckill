@@ -78,10 +78,16 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+   <!-- 之前使用了低版本的fastjson，之后发现有高危安全漏洞，便使用高版本的fastjson
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.5.4</version>
+    </dependency>   -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.28</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
